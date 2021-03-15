@@ -1,0 +1,36 @@
+{
+  "name": "vite-plugin-html-config",
+  "version": "0.0.1",
+  "description": "a vite html config for script,meta,link and more..",
+  "author": "ahwgs <ah_wgs@126.com>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "npm run build -- --watch",
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "release": "npx bumpp --push --tag --commit && npm publish"
+  },
+  "devDependencies": {
+    "vite": "^2.0.5",
+    "tsup": "^4.5.1",
+    "typescript": "^4.2.2"
+  },
+  "peerDependencies": {
+    "vite": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahwgs/vite-plugin-html-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ahwgs/vite-plugin-html-config/issues"
+  }
+}
