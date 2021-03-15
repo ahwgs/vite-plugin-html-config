@@ -1,6 +1,16 @@
 # vite-plugin-html-config [![npm](https://img.shields.io/npm/v/vite-plugin-html-config.svg)](https://npmjs.com/package/vite-plugin-html-config)
 This plugin helps us configure additional html
 
+## Install
+
+node version: >=12.0.0
+
+vite version: >=2.0.0
+
+```bash
+yarn add vite-plugin-html-config -D
+```
+
 ## Options
 
 - favicon : html favicon url (href url)
