@@ -1,4 +1,4 @@
-# vue-plugin-html-config [![npm](https://img.shields.io/npm/v/vue-plugin-html-config.svg)](https://npmjs.com/package/vue-plugin-html-config)
+# vue-plugin-html-config [![npm](https://img.shields.io/npm/v/vite-plugin-html-config.svg)](https://npmjs.com/package/vite-plugin-html-config)
 This plugin helps us configure additional html
 
 ## Options
