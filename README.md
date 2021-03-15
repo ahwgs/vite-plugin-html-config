@@ -14,7 +14,7 @@ This plugin helps us configure additional html
 
 ```javascript
 // vite.config.js
-const htmlPlugin = require('@vitejs/plugin-html')
+import htmlPlugin from 'vite-plugin-html-config';
 
 const htmlPluginOpt = {
   favicon: './logo.svg',
