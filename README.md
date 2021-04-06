@@ -1,6 +1,11 @@
 # vite-plugin-html-config [![npm](https://img.shields.io/npm/v/vite-plugin-html-config.svg)](https://npmjs.com/package/vite-plugin-html-config)
 This plugin helps us configure additional html
 
+The plugin is based on vite transformIndexHtml hooks.
+
+If we want to distinguish the environment and introduce resources in index.html, we can use this plugin.
+stand by, favicon url, metas config, link tag config, style tag config, headScripts config,body script config.
+
 ## Install
 
 node version: >=12.0.0
