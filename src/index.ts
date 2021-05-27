@@ -1,4 +1,4 @@
-import { Plugin, HtmlTagDescriptor } from 'vite';
+import { Plugin, HtmlTagDescriptor } from "vite";
 export interface IHTMLTag {
   [key: string]: string;
 }
@@ -23,26 +23,26 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
 
   const getScriptContent = (
     script: IHTMLTag,
-    injectTo: 'head' | 'body' | 'head-prepend' | 'body-prepend'
+    injectTo: "head" | "body" | "head-prepend" | "body-prepend"
   ) => {
     let result = {} as HtmlTagDescriptor;
-    if (typeof script === 'object' && script.src) {
+    if (typeof script === "object" && script.src) {
       result = {
-        tag: 'script',
+        tag: "script",
         injectTo,
         attrs: { ...script },
       };
-    } else if (typeof script === 'object' && script.content) {
+    } else if (typeof script === "object" && script.content) {
       const { content, ...attr } = script;
       result = {
-        tag: 'script',
+        tag: "script",
         injectTo,
         attrs: { ...attr },
         children: `${content}`,
       };
     } else {
       result = {
-        tag: 'script',
+        tag: "script",
         injectTo,
         children: `${script}`,
       };
@@ -51,21 +51,21 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
   };
 
   return {
-    name: 'html-plugin',
+    name: "html-plugin",
     transformIndexHtml(html, ctx) {
       const htmlResult = [] as HtmlTagDescriptor[];
       if (favicon) {
         htmlResult.push({
-          tag: 'link',
-          attrs: { rel: 'shortcut icon', type: 'image/x-icon', href: favicon },
-          injectTo: 'head',
+          tag: "link",
+          attrs: { rel: "shortcut icon", type: "image/x-icon", href: favicon },
+          injectTo: "head",
         });
       }
       if (metas.length) {
         metas.forEach((meta) => {
           htmlResult.push({
-            tag: 'meta',
-            injectTo: 'head',
+            tag: "meta",
+            injectTo: "head",
             attrs: { ...meta },
           });
         });
@@ -73,30 +73,30 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
       if (links.length) {
         links.forEach((meta) => {
           htmlResult.push({
-            tag: 'link',
-            injectTo: 'head',
+            tag: "link",
+            injectTo: "head",
             attrs: { ...meta },
           });
         });
       }
       if (style && style.length) {
         htmlResult.push({
-          tag: 'style',
-          injectTo: 'head',
+          tag: "style",
+          injectTo: "head",
           children: `${style}`
-            .split('\n')
+            .split("\n")
             .map((line) => `  ${line}`)
-            .join('\n'),
+            .join("\n"),
         });
       }
       if (headScripts.length) {
         headScripts.forEach((script) => {
-          htmlResult.push(getScriptContent(script, 'head'));
+          htmlResult.push(getScriptContent(script, "head"));
         });
       }
       if (scripts.length) {
         scripts.forEach((script) => {
-          htmlResult.push(getScriptContent(script, 'body'));
+          htmlResult.push(getScriptContent(script, "body"));
         });
       }
       return htmlResult;
@@ -105,5 +105,5 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
 }
 
 // overwrite for cjs require('...')() usage
-module.exports = HtmlPlugin;
-HtmlPlugin['default'] = HtmlPlugin;
+// module.exports = HtmlPlugin;
+// HtmlPlugin['default'] = HtmlPlugin;

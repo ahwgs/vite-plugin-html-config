@@ -75,6 +75,11 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+vite-plugin-html-config@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html-config/-/vite-plugin-html-config-1.0.3.tgz#495f5243a7bf54597039b2ea35b519048a41a2a7"
+  integrity sha512-36qFMRqszqRfZBH/7MGsbbfd0Z8SLozDCXhqvGJ/zkbinMmuyfjk5AWEYwrslMikyHibYSpX4w/4BLLK/0+++Q==
+
 vite@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.5.tgz#ac46857a3fa8686d077921e61bd48a986931df1d"

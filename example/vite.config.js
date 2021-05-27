@@ -1,4 +1,6 @@
-import htmlPlugin from "../dist/index.esm";
+import htmlPlugin from "vite-plugin-html-config";
+
+console.log("htmlPlugin", htmlPlugin);
 
 const htmlPluginOpt = {
   favicon: "./logo.svg",
