@@ -181,3 +181,7 @@ build index.html
   </body>
 </html>
 ```
+
+other example 
+
+[https://github.com/saschazar21/jpeg-butcher/blob/main/vite.config.ts#L30](https://github.com/saschazar21/jpeg-butcher/blob/main/vite.config.ts#L30)
