@@ -1,15 +1,16 @@
 import { Plugin, HtmlTagDescriptor } from "vite";
 export interface IHTMLTag {
-  [key: string]: string;
+  [key: string]: string|boolean;
 }
 
+export type ScriptTag = Record<string, string | boolean>|string
 export interface Options {
   favicon?: string;
   metas?: IHTMLTag[];
   links?: IHTMLTag[];
   style?: string;
-  headScripts?: IHTMLTag[];
-  scripts?: IHTMLTag[];
+  headScripts?: ScriptTag[];
+  scripts?: ScriptTag[];
 }
 export default function HtmlPlugin(rawOptions: Options): Plugin {
   const {
@@ -22,7 +23,7 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
   } = rawOptions;
 
   const getScriptContent = (
-    script: IHTMLTag,
+    script: ScriptTag,
     injectTo: "head" | "body" | "head-prepend" | "body-prepend"
   ) => {
     let result = {} as HtmlTagDescriptor;
