@@ -2,7 +2,9 @@ import htmlPlugin from "vite-plugin-html-config";
 
 console.log("htmlPlugin", htmlPlugin);
 
-const htmlPluginOpt = {
+
+module.exports = {
+  plugins: [htmlPlugin({
   favicon: "./logo.svg",
   headScripts: [
     `var msg = 'head script'
@@ -47,8 +49,5 @@ const htmlPluginOpt = {
     },
   ],
   style: `body { color: red; };*{ margin: 0px }`,
-};
-
-module.exports = {
-  plugins: [htmlPlugin(htmlPluginOpt)],
+})],
 };
