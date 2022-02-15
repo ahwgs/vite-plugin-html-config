@@ -1,9 +1,9 @@
 import { Plugin, HtmlTagDescriptor } from "vite";
 export interface IHTMLTag {
-  [key: string]: string|boolean;
+  [key: string]: string | boolean;
 }
 
-export type ScriptTag = Record<string, string | boolean>|string
+export type ScriptTag = Record<string, string | boolean> | string;
 export interface Options {
   favicon?: string;
   metas?: IHTMLTag[];

@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "vite": "^2.0.5",
-    "vite-plugin-html-config": "^1.0.3"
+    "vite-plugin-html-config": ".."
   }
 }
