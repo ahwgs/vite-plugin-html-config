@@ -1,4 +1,4 @@
-import { Plugin, HtmlTagDescriptor } from "vite";
+import type { Plugin, HtmlTagDescriptor , IndexHtmlTransformResult } from "vite";
 export interface IHTMLTag {
   [key: string]: string | boolean;
 }
@@ -53,7 +53,7 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
 
   return {
     name: "html-plugin",
-    transformIndexHtml(html, ctx) {
+    transformIndexHtml() {
       const htmlResult = [] as HtmlTagDescriptor[];
       if (favicon) {
         htmlResult.push({
@@ -100,9 +100,9 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
           htmlResult.push(getScriptContent(script, "body"));
         });
       }
-      return htmlResult;
+      return htmlResult as IndexHtmlTransformResult;
     },
-  };
+  } as Plugin
 }
 
 // overwrite for cjs require('...')() usage
