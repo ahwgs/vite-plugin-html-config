@@ -6,6 +6,7 @@ export interface IHTMLTag {
 export type ScriptTag = Record<string, string | boolean> | string;
 export interface Options {
   favicon?: string;
+  title?: string;
   metas?: IHTMLTag[];
   links?: IHTMLTag[];
   style?: string;
@@ -16,6 +17,7 @@ export interface Options {
 export default function HtmlPlugin(rawOptions: Options): Plugin {
   const {
     favicon,
+    title,
     headScripts = [],
     metas = [],
     links = [],
@@ -92,6 +94,15 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
             .join("\n"),
         });
       }
+
+      if (title && title.length) {
+        htmlResult.push({
+          tag: "title",
+          injectTo: "head",
+          children: title
+        })
+      }
+
       if (headScripts.length) {
         headScripts.forEach((script) => {
           htmlResult.push(getScriptContent(script, "head"));
