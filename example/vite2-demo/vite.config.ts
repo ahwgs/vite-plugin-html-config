@@ -16,6 +16,16 @@ module.exports = {
         },
         { content: `console.log('hello')`, charset: "utf-8" },
       ],
+      preHeadScripts: [
+        `var msg = 'pre head script'
+     console.log(msg);`,
+        {
+          async: true,
+          src: "https://abc.com/b.js",
+          type: "module",
+        },
+        { content: `console.log('hello')`, charset: "utf-8" },
+      ],
       scripts: [
         `var msg = 'body script'
      console.log(msg);`,

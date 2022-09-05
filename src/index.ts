@@ -11,6 +11,7 @@ export interface Options {
   style?: string;
   headScripts?: ScriptTag[];
   scripts?: ScriptTag[];
+  preHeadScripts?: ScriptTag[];
 }
 export default function HtmlPlugin(rawOptions: Options): Plugin {
   const {
@@ -20,6 +21,7 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
     links = [],
     style,
     scripts = [],
+    preHeadScripts = [],
   } = rawOptions;
 
   const getScriptContent = (
@@ -98,6 +100,11 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
       if (scripts.length) {
         scripts.forEach((script) => {
           htmlResult.push(getScriptContent(script, "body"));
+        });
+      }
+      if (preHeadScripts.length) {
+        preHeadScripts.forEach((script) => {
+          htmlResult.push(getScriptContent(script, "head-prepend"));
         });
       }
       return htmlResult as IndexHtmlTransformResult;

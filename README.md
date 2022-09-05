@@ -23,6 +23,7 @@ yarn add vite-plugin-html-config -D
 - links : html head link tag
 - style : html style string
 - headScripts : html head script
+- preHeadScripts : html script with head prepend
 - scripts : html script with body tag
 
 ## Usage
@@ -41,6 +42,16 @@ const htmlPluginOpt = {
       src: 'https://abc.com/b.js',
       type: 'module'
     },
+    { content: `console.log('hello')`, charset: 'utf-8' }
+  ], 
+  preHeadScripts: [
+    `var msg = 'pre head script'
+    console.log(msg);`,
+    {
+      async: true,
+      src: 'https://abc.com/b.js',
+      type: 'module'
+    }, 
     { content: `console.log('hello')`, charset: 'utf-8' }
   ],
   scripts: [
