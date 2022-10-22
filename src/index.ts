@@ -94,15 +94,13 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
             .join("\n"),
         });
       }
-
       if (title && title.length) {
         htmlResult.push({
           tag: "title",
           injectTo: "head",
-          children: title
-        })
+          children: title,
+        });
       }
-
       if (headScripts.length) {
         headScripts.forEach((script) => {
           htmlResult.push(getScriptContent(script, "head"));
