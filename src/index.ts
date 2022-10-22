@@ -1,4 +1,4 @@
-import type { Plugin, HtmlTagDescriptor , IndexHtmlTransformResult } from "vite";
+import type { Plugin, HtmlTagDescriptor } from "vite";
 export interface IHTMLTag {
   [key: string]: string | boolean;
 }
@@ -57,70 +57,73 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
 
   return {
     name: "html-plugin",
-    transformIndexHtml() {
-      const htmlResult = [] as HtmlTagDescriptor[];
-      if (favicon) {
-        htmlResult.push({
-          tag: "link",
-          attrs: { rel: "shortcut icon", type: "image/x-icon", href: favicon },
-          injectTo: "head",
-        });
-      }
-      if (metas.length) {
-        metas.forEach((meta) => {
-          htmlResult.push({
-            tag: "meta",
-            injectTo: "head",
-            attrs: { ...meta },
-          });
-        });
-      }
-      if (links.length) {
-        links.forEach((meta) => {
+    transformIndexHtml: {
+      enforce: 'pre',
+      transform: (html: string) => {
+        let resultHtmlStr = html
+        const htmlResult = [] as HtmlTagDescriptor[];
+        if (favicon) {
           htmlResult.push({
             tag: "link",
+            attrs: { rel: "shortcut icon", type: "image/x-icon", href: favicon },
             injectTo: "head",
-            attrs: { ...meta },
           });
-        });
+        }
+        if (metas.length) {
+          metas.forEach((meta) => {
+            htmlResult.push({
+              tag: "meta",
+              injectTo: "head",
+              attrs: { ...meta },
+            });
+          });
+        }
+        if (links.length) {
+          links.forEach((meta) => {
+            htmlResult.push({
+              tag: "link",
+              injectTo: "head",
+              attrs: { ...meta },
+            });
+          });
+        }
+        if (style && style.length) {
+          htmlResult.push({
+            tag: "style",
+            injectTo: "head",
+            children: `${style}`
+              .split("\n")
+              .map((line) => `  ${line}`)
+              .join("\n"),
+          });
+        }
+        if (title && title.length) {
+          // 如果 title 原本就存在
+          resultHtmlStr = html.replace(
+            /<title>(.*?)<\/title>/,
+            `<title>${title}</title>`
+          )
+        }
+        if (headScripts.length) {
+          headScripts.forEach((script) => {
+            htmlResult.push(getScriptContent(script, "head"));
+          });
+        }
+        if (scripts.length) {
+          scripts.forEach((script) => {
+            htmlResult.push(getScriptContent(script, "body"));
+          });
+        }
+        if (preHeadScripts.length) {
+          preHeadScripts.forEach((script) => {
+            htmlResult.push(getScriptContent(script, "head-prepend"));
+          });
+        }
+        return {
+          html: resultHtmlStr,
+          tags: htmlResult
+        }
       }
-      if (style && style.length) {
-        htmlResult.push({
-          tag: "style",
-          injectTo: "head",
-          children: `${style}`
-            .split("\n")
-            .map((line) => `  ${line}`)
-            .join("\n"),
-        });
-      }
-      if (title && title.length) {
-        htmlResult.push({
-          tag: "title",
-          injectTo: "head",
-          children: title,
-        });
-      }
-      if (headScripts.length) {
-        headScripts.forEach((script) => {
-          htmlResult.push(getScriptContent(script, "head"));
-        });
-      }
-      if (scripts.length) {
-        scripts.forEach((script) => {
-          htmlResult.push(getScriptContent(script, "body"));
-        });
-      }
-      if (preHeadScripts.length) {
-        preHeadScripts.forEach((script) => {
-          htmlResult.push(getScriptContent(script, "head-prepend"));
-        });
-      }
-      return htmlResult as IndexHtmlTransformResult;
-    },
+    }
   } as Plugin
 }
-
-// overwrite for cjs require('...')() usage
-// module.exports = HtmlPlugin;
-// HtmlPlugin['default'] = HtmlPlugin;

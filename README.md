@@ -1,4 +1,5 @@
 # vite-plugin-html-config [![npm](https://img.shields.io/npm/v/vite-plugin-html-config.svg)](https://npmjs.com/package/vite-plugin-html-config)
+
 This plugin helps us configure additional html
 
 The plugin is based on vite transformIndexHtml hooks.
@@ -18,6 +19,7 @@ yarn add vite-plugin-html-config -D
 
 ## Options
 
+- title : set your html title
 - favicon : html favicon url (href url)
 - metas : html meta tag, such as key=xx,value=xxx
 - links : html head link tag
@@ -30,7 +32,7 @@ yarn add vite-plugin-html-config -D
 
 ```javascript
 // vite.config.js
-import htmlPlugin from 'vite-plugin-html-config';
+import htmlPlugin from 'vite-plugin-html-config'
 
 const htmlPluginOpt = {
   favicon: './logo.svg',
@@ -40,19 +42,19 @@ const htmlPluginOpt = {
     {
       async: true,
       src: 'https://abc.com/b.js',
-      type: 'module'
+      type: 'module',
     },
-    { content: `console.log('hello')`, charset: 'utf-8' }
-  ], 
+    { content: `console.log('hello')`, charset: 'utf-8' },
+  ],
   preHeadScripts: [
     `var msg = 'pre head script'
     console.log(msg);`,
     {
       async: true,
       src: 'https://abc.com/b.js',
-      type: 'module'
-    }, 
-    { content: `console.log('hello')`, charset: 'utf-8' }
+      type: 'module',
+    },
+    { content: `console.log('hello')`, charset: 'utf-8' },
   ],
   scripts: [
     `var msg = 'body script'
@@ -60,39 +62,38 @@ const htmlPluginOpt = {
     {
       async: true,
       src: 'https://abc.com/b.js',
-      type: 'module'
-    }
+      type: 'module',
+    },
   ],
   metas: [
     {
       name: 'keywords',
-      content: 'vite html meta keywords'
+      content: 'vite html meta keywords',
     },
     {
       name: 'description',
-      content: 'vite html meta description'
+      content: 'vite html meta description',
     },
     {
-      bar: 'custom meta'
-    }
+      bar: 'custom meta',
+    },
   ],
   links: [
     {
       rel: 'stylesheet',
-      href: './style.css'
+      href: './style.css',
     },
     {
       rel: 'modulepreload',
-      href: 'https://cn.vitejs.dev/assets/guide_api-plugin.md.6884005a.lean.js'
-    }
+      href: 'https://cn.vitejs.dev/assets/guide_api-plugin.md.6884005a.lean.js',
+    },
   ],
-  style: `body { color: red; };*{ margin: 0px }`
+  style: `body { color: red; };*{ margin: 0px }`,
 }
 
 module.exports = {
-  plugins: [htmlPlugin(htmlPluginOpt)]
+  plugins: [htmlPlugin(htmlPluginOpt)],
 }
-
 ```
 
 ## Example
@@ -111,7 +112,7 @@ const headScripts = []
 // from app env
 const APP_ENV = 'pro'
 
-const BAIDU_KEY = APP_ENV==='pro'?'123123':'xxxxxx'
+const BAIDU_KEY = APP_ENV === 'pro' ? '123123' : 'xxxxxx'
 
 if (APP_ENV === 'pro') {
   headScripts.push(
@@ -122,7 +123,7 @@ if (APP_ENV === 'pro') {
     },
     {
       src: 'https://bbbbb.js',
-    },
+    }
   )
 }
 
@@ -148,19 +149,19 @@ const htmlPluginOpt = {
       href: 'https://www.google.com/xxx.js',
     },
   ],
-  scripts:[
+  scripts: [
     `var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?${BAIDU_KEY}";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
-})();`
+})();`,
   ],
   style: 'body { color: red; };*{ margin: 0px }',
 }
 module.exports = {
-  plugins: [htmlPlugin(htmlPluginOpt)]
+  plugins: [htmlPlugin(htmlPluginOpt)],
 }
 ```
 
@@ -186,13 +187,13 @@ build index.html
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?123123";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();</script>
   </body>
 </html>
 ```
 
-other example 
+other example
 
 [https://github.com/saschazar21/jpeg-butcher/blob/main/vite.config.ts#L30](https://github.com/saschazar21/jpeg-butcher/blob/main/vite.config.ts#L30)

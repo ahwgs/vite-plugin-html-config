@@ -5,6 +5,7 @@ console.log("htmlPlugin", htmlPlugin);
 module.exports = {
   plugins: [
     htmlPlugin({
+      title: 'custom title',
       favicon: "./logo.svg",
       headScripts: [
         `var msg = 'head script'
@@ -15,6 +16,7 @@ module.exports = {
           type: "module",
         },
         { content: `console.log('hello')`, charset: "utf-8" },
+        { src: "https://abc.com/b.js", "data-map": true, "data-openId": "123123", charset: "utf-8" },
       ],
       preHeadScripts: [
         `var msg = 'pre head script'
