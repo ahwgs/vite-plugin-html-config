@@ -58,8 +58,8 @@ export default function HtmlPlugin(rawOptions: Options): Plugin {
   return {
     name: "html-plugin",
     transformIndexHtml: {
-      enforce: 'pre',
-      transform: (html: string) => {
+      order: 'pre',
+      handler: (html: string) => {
         let resultHtmlStr = html
         const htmlResult = [] as HtmlTagDescriptor[];
         if (favicon) {

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-html-config",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "a vite html config for script,meta,link and more..",
   "author": "ahwgs <ah_wgs@126.com>",
   "license": "MIT",
@@ -19,10 +19,10 @@
     "@osdoc-dev/avenger-cli": "0.2.4",
     "tslib": "^2.4.0",
     "typescript": "^4.2.2",
-    "vite": "^2.9.10"
+    "vite": "^5.0.0"
   },
   "peerDependencies": {
-    "vite": ">=2.0.0"
+    "vite": ">=5.0.0"
   },
   "engines": {
     "node": ">=12.0.0"
