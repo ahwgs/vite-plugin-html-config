@@ -11,7 +11,7 @@ stand by, favicon url, metas config, link tag config, style tag config, headScri
 
 node version: >=12.0.0
 
-vite version: >=2.0.0
+vite version: >=5.0.0
 
 ```bash
 yarn add vite-plugin-html-config -D
