@@ -17,12 +17,17 @@
   },
   "devDependencies": {
     "@osdoc-dev/avenger-cli": "0.2.4",
-    "tslib": "^2.4.0",
-    "typescript": "^4.2.2",
-    "vite": "^5.0.0"
+    "tslib": "^2.6.3",
+    "typescript": "^4.9.5",
+    "vite": "^5.4.1"
   },
   "peerDependencies": {
     "vite": ">=5.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "rollup-plugin-typescript2": "0.36.0"
+    }
   },
   "engines": {
     "node": ">=12.0.0"
